@@ -1,0 +1,21 @@
+{
+	"auth": {
+		"staffplannerb81924e5": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": []
+		}
+	},
+	"function": {
+		"staffplanner9789364aDefineAuthChallenge": {
+			"build": true,
+			"providerPlugin": "awscloudformation",
+			"service": "Lambda"
+		},
+		"staffplanner9789364aCreateAuthChallenge": {
+			"build": true,
+			"providerPlugin": "awscloudformation",
+			"service": "Lambda"
+		}
+	}
+}
