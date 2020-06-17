@@ -1,8 +1,8 @@
 {
-    "identityPoolName": "staffplannerb81924e5_identitypool_b81924e5",
+    "identityPoolName": "staffplannercb459a83_identitypool_cb459a83",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "staffpb81924e5",
-    "userPoolName": "staffplannerb81924e5_userpool_b81924e5",
+    "resourceNameTruncated": "staffpcb459a83",
+    "userPoolName": "staffplannercb459a83_userpool_cb459a83",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -18,9 +18,7 @@
     "passwordPolicyMinLength": 8,
     "passwordPolicyCharacters": [],
     "requiredAttributes": [
-        "email",
-        "family_name",
-        "given_name"
+        "email"
     ],
     "userpoolClientGenerateSecret": true,
     "userpoolClientRefreshTokenValidity": 30,
@@ -30,10 +28,10 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "staffpb81924e5_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "staffpcb459a83_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "b81924e5",
-    "resourceName": "staffplannerb81924e5",
+    "sharedId": "cb459a83",
+    "resourceName": "staffplannercb459a83",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
         "Fn::GetAtt": [
@@ -51,11 +49,6 @@
     "usernameAttributes": [
         "email"
     ],
-    "triggers": "{}",
     "userPoolGroupList": [],
-    "parentStack": {
-        "Ref": "AWS::StackId"
-    },
-    "permissions": [],
     "dependsOn": []
 }

@@ -4,13 +4,23 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import Amplify from "aws-amplify";
-import awsExports from "./aws-exports";
-Amplify.configure(awsExports);
+import config from './config'
+
+
+Amplify.configure({
+  Auth:{
+    identityPoolId: "us-east-2:b61d1d5b-98d0-41c1-b884-ccca8dfc0af7",
+    manditorySignIn: true,
+    region: config.cognito.REGION,
+    userPoolId: config.cognito.USER_POOL_ID,
+    userPoolWebClientId: config.cognito.APP_CLIENT_ID
+  }
+});
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  // <React.StrictMode>
+    <App />,
+  // </React.StrictMode>,
   document.getElementById('root')
 );
 
