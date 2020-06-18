@@ -40,7 +40,7 @@ class PersonalCalendar extends Component {
                 "startDate": calendarEvent.startDate.toLocaleString('en-US'),
                 "endDate": calendarEvent.endDate.toLocaleString('en-US')
             },
-            "reason": this.state.newEvent.reason,
+            "reason": calendarEvent.eventReason,
             "username": this.state.userEmail
 
         })
@@ -117,7 +117,6 @@ class PersonalCalendar extends Component {
                 `${config.api.invokeUrl}/calendarevents/${calendarEvent.id}`,
                 params
             )
-            console.log(response)
 
             // this.setState({
             //     calendarEvents: [...this.state.calendarEvents, this.state.newEvent]
@@ -182,7 +181,7 @@ class PersonalCalendar extends Component {
                         onClickDay: this.handleDateClick,
                         value: this.state.selectedDate
                     }, null),
-                create(EventForm, {onSubmitButton:this.handleNewEventSubmit}, null),
+                create(EventForm, {onSubmitButton: this.handleNewEventSubmit}, null),
                 // create('button', {type: "button", onClick:event => this.handleDeleteEventSubmit(34, event)}, "delete"),
                 this.state.calendarEvents && this.state.calendarEvents.length > 0 
                 ? create('table', {},

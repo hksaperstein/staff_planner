@@ -25,8 +25,12 @@ class EventForm extends Component {
     }
     handleReasonSelection = (event) =>{
         const value = event.target.value
+        console.log(value)
         this.setState({
-            eventReason: value
+            calendarEvent:{
+                ...this.state.calendarEvent,
+                eventReason: value
+            }
         })
     }
     componentDidMount(){
@@ -57,7 +61,7 @@ class EventForm extends Component {
                                 create('input', {
                                     type:"radio",
                                     value: "Doctor's Apt.",
-                                    checked: this.state.eventReason === "Doctor's Apt.",
+                                    checked: this.state.calendarEvent.eventReason === "Doctor's Apt.",
                                     onChange: this.handleReasonSelection
                                 })
                             )
@@ -67,7 +71,7 @@ class EventForm extends Component {
                                 create('input', {
                                     type:"radio",
                                     value: "Family",
-                                    checked: this.state.eventReason === "Family",
+                                    checked: this.state.calendarEvent.eventReason === "Family",
                                     onChange: this.handleReasonSelection
                                 })
                             )
@@ -77,7 +81,7 @@ class EventForm extends Component {
                                 create('input', {
                                     type:"radio",
                                     value: "Vacation",
-                                    checked: this.state.eventReason === "Vacation",
+                                    checked: this.state.calendarEvent.eventReason === "Vacation",
                                     onChange: this.handleReasonSelection
                                 })
                             )
@@ -87,7 +91,7 @@ class EventForm extends Component {
                                 create('input', {
                                     type:"radio",
                                     value: "Other",
-                                    checked: this.state.eventReason === "Other",
+                                    checked: this.state.calendarEvent.eventReason === "Other",
                                     onChange: this.handleReasonSelection
                                 })
                             )
