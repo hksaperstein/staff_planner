@@ -109,10 +109,10 @@ class PersonalCalendar extends Component {
 
     handleNewEventSubmit = async (calendarEvent, event) =>{
         event.preventDefault()
-        console.log(calendarEvent)
+        // console.log(calendarEvent)
         try{
             const params = this.formatEventForSubmission(calendarEvent)
-            console.log(calendarEvent.id)
+            console.log(params)
             const response = await Axios.post(
                 `${config.api.invokeUrl}/calendarevents/${calendarEvent.id}`,
                 params

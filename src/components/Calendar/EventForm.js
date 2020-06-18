@@ -18,16 +18,19 @@ class EventForm extends Component {
         this.setState({
             calendarEvent:{
                 ...this.state.calendarEvent,
-                id: event.target.value
+                id: parseInt(event.target.value)
             }
         })
-        console.log(this.state.calendarEvent.startDate)
+        // console.log(this.state.calendarEvent.startDate)
     }
     handleReasonSelection = (event) =>{
         const value = event.target.value
         this.setState({
             eventReason: value
         })
+    }
+    componentDidMount(){
+        console.log(this.state.calendarEvent.eventReason)
     }
     
     render() {
