@@ -5,11 +5,13 @@ class EventForm extends Component {
         super(props)
     
         this.state = {
+            eventReasons: ["Vacation", "Family", "Other"],
             calendarEvent:{
                 id: 0,
                 startDate: new Date(),
                 endDate: new Date(),
                 eventReason: ""
+                
             }
              
         }
@@ -56,47 +58,62 @@ class EventForm extends Component {
                     ),
                     create('div', null, 
                         create('h2', null, "Reason for Absence"),
-                        create('div', null, 
-                            create('label', {}, "Doctor's Appointment",
-                                create('input', {
-                                    type:"radio",
-                                    value: "Doctor's Apt.",
-                                    checked: this.state.calendarEvent.eventReason === "Doctor's Apt.",
-                                    onChange: this.handleReasonSelection
-                                })
+                        this.state.eventReasons.map(
+                            reason =>
+                            create('div', {key: `${reason}`}, 
+                                create('label', {}, `${reason}`,
+                                    create('input', {
+                                        type:"radio",
+                                        value: `${reason}`,
+                                        checked: this.state.calendarEvent.eventReason === `${reason}`,
+                                        onChange: this.handleReasonSelection
+                                    })
+                                )
                             )
-                        ),
-                        create('div', null, 
-                            create('label', {}, "Family",
-                                create('input', {
-                                    type:"radio",
-                                    value: "Family",
-                                    checked: this.state.calendarEvent.eventReason === "Family",
-                                    onChange: this.handleReasonSelection
-                                })
-                            )
-                        ),
-                        create('div', null, 
-                            create('label', {}, "Vacation",
-                                create('input', {
-                                    type:"radio",
-                                    value: "Vacation",
-                                    checked: this.state.calendarEvent.eventReason === "Vacation",
-                                    onChange: this.handleReasonSelection
-                                })
-                            )
-                        ),
-                        create('div', null, 
-                            create('label', {}, "Other",
-                                create('input', {
-                                    type:"radio",
-                                    value: "Other",
-                                    checked: this.state.calendarEvent.eventReason === "Other",
-                                    onChange: this.handleReasonSelection
-                                })
-                            )
-                        ) // TODO Add user input for other
+                        )
                     ),
+                        // create('div', null, 
+                        //     create('label', {}, "Doctor's Appointment",
+                        //         create('input', {
+                        //             type:"radio",
+                        //             value: "Doctor's Apt.",
+                        //             checked: this.state.calendarEvent.eventReason === "Doctor's Apt.",
+                        //             onChange: this.handleReasonSelection
+                        //         })
+                        //     )
+                        // ),
+                        // create('div', null, 
+                        //     create('label', {}, "Family",
+                        //         create('input', {
+                        //             type:"radio",
+                        //             value: "Family",
+                        //             checked: this.state.calendarEvent.eventReason === "Family",
+                        //             onChange: this.handleReasonSelection
+                        //         })
+                        //     )
+                        // ),
+                        // create('div', null, 
+                        //     create('label', {}, "Vacation",
+                        //         create('input', {
+                        //             type:"radio",
+                        //             value: "Vacation",
+                        //             checked: this.state.calendarEvent.eventReason === "Vacation",
+                        //             onChange: this.handleReasonSelection
+                        //         })
+                        //     )
+                        // ),
+                        // create('div', null, 
+                        //     create('label', {}, "Other",
+                        //         create('input', {
+                        //             type:"radio",
+                        //             value: "Other",
+                        //             checked: this.state.calendarEvent.eventReason === "Other",
+                        //             onChange: this.handleReasonSelection
+                        //         })
+                        //     )
+                        // )
+                         // TODO Add user input for other
+                    // ),
                     // create(DatetimeRangePicker,
                     //     {
                     //         inline: true,

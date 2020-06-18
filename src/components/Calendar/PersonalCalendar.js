@@ -1,10 +1,10 @@
 import React, { Component, Fragment } from 'react';
 import Axios from 'axios';
-import CalendarEvent from './CalendarEvent';
 import Calendar from 'react-calendar';
 // import DatetimeRangePicker from '@wojtekmaj/react-datetimerange-picker';
 import 'react-calendar/dist/Calendar.css';
 import EventForm from './EventForm';
+import EventTable from './EventTable';
 const config = require("../../config.json")
 
 class PersonalCalendar extends Component {
@@ -184,29 +184,34 @@ class PersonalCalendar extends Component {
                 create(EventForm, {onSubmitButton: this.handleNewEventSubmit}, null),
                 // create('button', {type: "button", onClick:event => this.handleDeleteEventSubmit(34, event)}, "delete"),
                 this.state.calendarEvents && this.state.calendarEvents.length > 0 
-                ? create('table', {},
-                    create('thead', null, 
-                        create('tr', null, 
-                            create('th', null, "ID"),
-                            create('th', null, "Start Date"),
-                            create('th', null, "End Date"),
-                            create('th', null, "Reason"),
-                            create('th', null, "Update Event"),
-                            create('th', null, "Delete Event"),
-                        )
-                    ),
-                    create('tbody', null, 
-                        this.state.calendarEvents.map(
-                            calendarEvent => 
-                            create(CalendarEvent, 
-                                {
-                                    key: calendarEvent.id, 
-                                    calendarEvent: calendarEvent,
-                                    onDeleteButton:this.handleDeleteEventSubmit
-                                }, null)
-                        )
-                    )
-                )
+                ? create(EventTable, 
+                    {
+                        calendarEvents:this.state.calendarEvents, 
+                        onDeleteButton:this.handleDeleteEventSubmit
+                    })
+                // ? create('table', {},
+                //     create('thead', null, 
+                //         create('tr', null, 
+                //             create('th', null, "ID"),
+                //             create('th', null, "Start Date"),
+                //             create('th', null, "End Date"),
+                //             create('th', null, "Reason"),
+                //             create('th', null, "Update Event"),
+                //             create('th', null, "Delete Event"),
+                //         )
+                //     ),
+                //     create('tbody', null, 
+                //         this.state.calendarEvents.map(
+                //             calendarEvent => 
+                //             create(CalendarEvent, 
+                //                 {
+                //                     key: calendarEvent.id, 
+                //                     calendarEvent: calendarEvent,
+                //                     onDeleteButton:this.handleDeleteEventSubmit
+                //                 }, null)
+                //         )
+                //     )
+                // )
                 : create('h1', null, "No events"),
             )
         )   
