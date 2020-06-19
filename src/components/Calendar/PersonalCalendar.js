@@ -47,51 +47,6 @@ class PersonalCalendar extends Component {
         
     }
 
-    handleEventFormChange = (event) => {
-        this.setState({
-            newEvent:{
-                ...this.state.newEvent,
-                [event.target.name]: event.target.value ? parseInt(event.target.value) : ''
-            }
-        })
-
-        console.log(this.state.newEvent)
-        
-    }
-
-    handleDateSelectionChange = (dates) => {
-        const startDate = dates[0]
-        const endDate = dates[1]
-        console.log(startDate)
-        console.log(endDate)
-
-        // this.setState({
-        //     eventDates:{
-        //         ...this.state.eventDates,
-        //         startDate: date
-        //     }
-        // })
-    }
-
-    handleStartDateSelectionChange = (date) => {
-        console.log(date)
-        this.setState({
-            eventDates:{
-                ...this.state.eventDates,
-                startDate: date
-            }
-        })
-    }
-    handleEndDateSelectionChange = (date) => {
-        // console.log(date)
-        // this.setState({
-        //     eventDates:{
-        //         ...this.state.eventDates,
-        //         endDate: date
-        //     }
-        // })
-    }
-
     // TODO TEST and properly input formatted event
     handleUpdateEventSubmit = async(id, event) =>{
         let params = null
@@ -109,7 +64,8 @@ class PersonalCalendar extends Component {
 
     handleNewEventSubmit = async (calendarEvent, event) =>{
         event.preventDefault()
-        // console.log(calendarEvent)
+        console.log(this.state.calendarEvents)
+        console.log(calendarEvent)
         try{
             const params = this.formatEventForSubmission(calendarEvent)
             console.log(params)
@@ -117,22 +73,8 @@ class PersonalCalendar extends Component {
                 `${config.api.invokeUrl}/calendarevents/${calendarEvent.id}`,
                 params
             )
-
-            // this.setState({
-            //     calendarEvents: [...this.state.calendarEvents, this.state.newEvent]
-            // })
-            // this.setState({
-            //     newEvent:{
-            //         id: 0,
-            //         day: 0,
-            //         month: 0,
-            //         year: 0,
-            //         startTime: 0,
-            //         endTime: 0,
-            //         reason: "TESTING REASON, NEED RADIO",
-            //         username: this.state.userEmail
-            //     }
-            // })
+            this.setState({ 
+                calendarEvents: [...this.state.calendarEvents, params] });
 
         } catch (error) {
             console.log(`Unable to create new calendar event: ${error}`)
@@ -182,36 +124,12 @@ class PersonalCalendar extends Component {
                         value: this.state.selectedDate
                     }, null),
                 create(EventForm, {onSubmitButton: this.handleNewEventSubmit}, null),
-                // create('button', {type: "button", onClick:event => this.handleDeleteEventSubmit(34, event)}, "delete"),
                 this.state.calendarEvents && this.state.calendarEvents.length > 0 
                 ? create(EventTable, 
                     {
                         calendarEvents:this.state.calendarEvents, 
                         onDeleteButton:this.handleDeleteEventSubmit
                     })
-                // ? create('table', {},
-                //     create('thead', null, 
-                //         create('tr', null, 
-                //             create('th', null, "ID"),
-                //             create('th', null, "Start Date"),
-                //             create('th', null, "End Date"),
-                //             create('th', null, "Reason"),
-                //             create('th', null, "Update Event"),
-                //             create('th', null, "Delete Event"),
-                //         )
-                //     ),
-                //     create('tbody', null, 
-                //         this.state.calendarEvents.map(
-                //             calendarEvent => 
-                //             create(CalendarEvent, 
-                //                 {
-                //                     key: calendarEvent.id, 
-                //                     calendarEvent: calendarEvent,
-                //                     onDeleteButton:this.handleDeleteEventSubmit
-                //                 }, null)
-                //         )
-                //     )
-                // )
                 : create('h1', null, "No events"),
             )
         )   

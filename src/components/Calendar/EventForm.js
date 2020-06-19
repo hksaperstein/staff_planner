@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-
+import DateTimePicker from 'react-datetime-picker'
 class EventForm extends Component {
     constructor(props) {
         super(props)
     
         this.state = {
             eventReasons: ["Vacation", "Family", "Other"],
+            eventAllDay: false,
             calendarEvent:{
                 id: 0,
                 startDate: new Date(),
@@ -27,7 +28,6 @@ class EventForm extends Component {
     }
     handleReasonSelection = (event) =>{
         const value = event.target.value
-        console.log(value)
         this.setState({
             calendarEvent:{
                 ...this.state.calendarEvent,
@@ -35,6 +35,16 @@ class EventForm extends Component {
             }
         })
     }
+
+    handleDateChange = (date, name) =>{
+        this.setState({
+            calendarEvent:{
+                ...this.state.calendarEvent,
+                [name]: date
+            }
+        })
+    }
+
     componentDidMount(){
         console.log(this.state.calendarEvent.eventReason)
     }
@@ -44,7 +54,9 @@ class EventForm extends Component {
         const {calendarEvent} = this.state
         return (
             create('div', null, 
+                //TODO add required functionality
                 create('form', {onSubmit: (event) => this.props.onSubmitButton(calendarEvent, event)},
+                // TODO Change this to UUID somehow..
                     create('div', {}, 
                         create('label', {className: "p-1"}, "DynamoDB ID"),
                         create('input', {
@@ -55,6 +67,26 @@ class EventForm extends Component {
                             placeholder: "Enter New ID"
 
                         }, null)
+                    ),
+
+                    // TODO add all day selection and functionality
+                    create('div', null, 
+                        create('label', null, "Start Date and Time"),
+                        create(DateTimePicker, {
+                            name: "startDate",
+                            disableClock: true,
+                            value: this.state.calendarEvent.startDate,
+                            onChange: (date, name) => this.handleDateChange(date, "startDate")
+                        })
+                    ),
+                    create('div', null, 
+                        create('label', null, "End Date and Time"),
+                        create(DateTimePicker, {
+                            name: "endDate",
+                            disableClock: true,
+                            value: this.state.calendarEvent.endDate,
+                            onChange: (date, name) => this.handleDateChange(date, "endDate")
+                        })
                     ),
                     create('div', null, 
                         create('h2', null, "Reason for Absence"),
@@ -72,48 +104,6 @@ class EventForm extends Component {
                             )
                         )
                     ),
-                        // create('div', null, 
-                        //     create('label', {}, "Doctor's Appointment",
-                        //         create('input', {
-                        //             type:"radio",
-                        //             value: "Doctor's Apt.",
-                        //             checked: this.state.calendarEvent.eventReason === "Doctor's Apt.",
-                        //             onChange: this.handleReasonSelection
-                        //         })
-                        //     )
-                        // ),
-                        // create('div', null, 
-                        //     create('label', {}, "Family",
-                        //         create('input', {
-                        //             type:"radio",
-                        //             value: "Family",
-                        //             checked: this.state.calendarEvent.eventReason === "Family",
-                        //             onChange: this.handleReasonSelection
-                        //         })
-                        //     )
-                        // ),
-                        // create('div', null, 
-                        //     create('label', {}, "Vacation",
-                        //         create('input', {
-                        //             type:"radio",
-                        //             value: "Vacation",
-                        //             checked: this.state.calendarEvent.eventReason === "Vacation",
-                        //             onChange: this.handleReasonSelection
-                        //         })
-                        //     )
-                        // ),
-                        // create('div', null, 
-                        //     create('label', {}, "Other",
-                        //         create('input', {
-                        //             type:"radio",
-                        //             value: "Other",
-                        //             checked: this.state.calendarEvent.eventReason === "Other",
-                        //             onChange: this.handleReasonSelection
-                        //         })
-                        //     )
-                        // )
-                         // TODO Add user input for other
-                    // ),
                     // create(DatetimeRangePicker,
                     //     {
                     //         inline: true,
