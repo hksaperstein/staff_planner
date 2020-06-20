@@ -61,7 +61,7 @@ class PersonalCalendar extends Component {
 
         }
     }
-
+    //TODO UUID
     handleNewEventSubmit = async (calendarEvent, event) =>{
         event.preventDefault()
         console.log(this.state.calendarEvents)

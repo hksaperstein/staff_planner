@@ -62,6 +62,7 @@ class EventForm extends Component {
                         create('input', {
                             type: "number", 
                             name: "id",
+                            required: true,
                             onChange: this.handleIDChange,
                             value: this.state.calendarEvent.id,
                             placeholder: "Enter New ID"
@@ -88,7 +89,7 @@ class EventForm extends Component {
                             onChange: (date, name) => this.handleDateChange(date, "endDate")
                         })
                     ),
-                    create('div', null, 
+                    create('div', {}, 
                         create('h2', null, "Reason for Absence"),
                         this.state.eventReasons.map(
                             reason =>
