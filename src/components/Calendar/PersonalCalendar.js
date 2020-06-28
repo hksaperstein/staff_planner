@@ -5,6 +5,8 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import EventForm from "./EventForm";
 import EventTable from "./EventTable";
+import { Container, Row, Col } from "react-bootstrap";
+
 const config = require("../../config.json");
 
 class PersonalCalendar extends Component {
@@ -105,8 +107,16 @@ class PersonalCalendar extends Component {
   render() {
     return (
       <Fragment>
-        <Calendar onClickDay={this.handleDateClick} value={this.state.selectedDate} />
-        <EventForm onSubmitButton={this.handleNewEventSubmit} />
+        <Container>
+          <Row>
+            <Col>
+              <Calendar onClickDay={this.handleDateClick} value={this.state.selectedDate} />
+            </Col>
+            <Col>
+              <EventForm onSubmitButton={this.handleNewEventSubmit} />
+            </Col>
+          </Row>
+        </Container>
         {this.state.calendarEvents && this.state.calendarEvents.length > 0 ? (
           <EventTable calendarEvents={this.state.calendarEvents} onDeleteButton={this.handleDeleteEventSubmit} />
         ) : (
