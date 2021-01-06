@@ -10,7 +10,7 @@
     "@wojtekmaj/react-datetimerange-picker": "^3.0.0",
     "@wojtekmaj/react-timerange-picker": "^3.0.0",
     "aws-amplify": "^3.0.17",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bootstrap": "^4.5.0",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.1",
